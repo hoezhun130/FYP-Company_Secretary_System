@@ -80,72 +80,72 @@
     <Content Include="App_Data\RecordManagement_log.ldf">
       <DependentUpon>RecordManagement.mdf</DependentUpon>
     </Content>
-    <Content Include="Category.aspx" />
-    <Content Include="CategoryDetail.aspx" />
-    <Content Include="ClientAdminPage.aspx" />
-    <Content Include="ClientUserPage.aspx" />
-    <Content Include="Login.aspx" />
-    <Content Include="ServiceProviderPage.aspx" />
-    <Content Include="TenantAdminPage.aspx" />
-    <Content Include="TenantUserPage.aspx" />
+    <Content Include="UserSite\Category.aspx" />
+    <Content Include="UserSite\CategoryDetail.aspx" />
+    <Content Include="AdminSite\ClientAdminPage.aspx" />
+    <Content Include="UserSite\ClientUserPage.aspx" />
+    <Content Include="AdminSite\Login.aspx" />
+    <Content Include="AdminSite\ServiceProviderPage.aspx" />
+    <Content Include="AdminSite\TenantAdminPage.aspx" />
+    <Content Include="UserSite\TenantUserPage.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Category.aspx.cs">
+    <Compile Include="UserSite\Category.aspx.cs">
       <DependentUpon>Category.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Category.aspx.designer.cs">
+    <Compile Include="UserSite\Category.aspx.designer.cs">
       <DependentUpon>Category.aspx</DependentUpon>
     </Compile>
-    <Compile Include="CategoryDetail.aspx.cs">
+    <Compile Include="UserSite\CategoryDetail.aspx.cs">
       <DependentUpon>CategoryDetail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="CategoryDetail.aspx.designer.cs">
+    <Compile Include="UserSite\CategoryDetail.aspx.designer.cs">
       <DependentUpon>CategoryDetail.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ClientAdminPage.aspx.cs">
+    <Compile Include="AdminSite\ClientAdminPage.aspx.cs">
       <DependentUpon>ClientAdminPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ClientAdminPage.aspx.designer.cs">
+    <Compile Include="AdminSite\ClientAdminPage.aspx.designer.cs">
       <DependentUpon>ClientAdminPage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ClientUserPage.aspx.cs">
+    <Compile Include="UserSite\ClientUserPage.aspx.cs">
       <DependentUpon>ClientUserPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ClientUserPage.aspx.designer.cs">
+    <Compile Include="UserSite\ClientUserPage.aspx.designer.cs">
       <DependentUpon>ClientUserPage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Login.aspx.cs">
+    <Compile Include="AdminSite\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Login.aspx.designer.cs">
+    <Compile Include="AdminSite\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ServiceProviderPage.aspx.cs">
+    <Compile Include="AdminSite\ServiceProviderPage.aspx.cs">
       <DependentUpon>ServiceProviderPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ServiceProviderPage.aspx.designer.cs">
+    <Compile Include="AdminSite\ServiceProviderPage.aspx.designer.cs">
       <DependentUpon>ServiceProviderPage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="TenantAdminPage.aspx.cs">
+    <Compile Include="AdminSite\TenantAdminPage.aspx.cs">
       <DependentUpon>TenantAdminPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="TenantAdminPage.aspx.designer.cs">
+    <Compile Include="AdminSite\TenantAdminPage.aspx.designer.cs">
       <DependentUpon>TenantAdminPage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="TenantUserPage.aspx.cs">
+    <Compile Include="UserSite\TenantUserPage.aspx.cs">
       <DependentUpon>TenantUserPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="TenantUserPage.aspx.designer.cs">
+    <Compile Include="UserSite\TenantUserPage.aspx.designer.cs">
       <DependentUpon>TenantUserPage.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
