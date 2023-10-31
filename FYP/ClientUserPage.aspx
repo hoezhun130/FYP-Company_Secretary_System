@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ServiceProviderPage.aspx.cs" Inherits="FYP.ServiceProviderPage" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ClientUserPage.aspx.cs" Inherits="FYP.ClientUserPage" %>
 
 <!DOCTYPE html>
 
@@ -9,7 +9,6 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            This is Service Provider Page
         </div>
     </form>
 </body>

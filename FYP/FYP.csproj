@@ -82,8 +82,12 @@
     </Content>
     <Content Include="Category.aspx" />
     <Content Include="CategoryDetail.aspx" />
+    <Content Include="ClientAdminPage.aspx" />
+    <Content Include="ClientUserPage.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="ServiceProviderPage.aspx" />
+    <Content Include="TenantAdminPage.aspx" />
+    <Content Include="TenantUserPage.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -101,6 +105,20 @@
     <Compile Include="CategoryDetail.aspx.designer.cs">
       <DependentUpon>CategoryDetail.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ClientAdminPage.aspx.cs">
+      <DependentUpon>ClientAdminPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ClientAdminPage.aspx.designer.cs">
+      <DependentUpon>ClientAdminPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ClientUserPage.aspx.cs">
+      <DependentUpon>ClientUserPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ClientUserPage.aspx.designer.cs">
+      <DependentUpon>ClientUserPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -115,6 +133,20 @@
     </Compile>
     <Compile Include="ServiceProviderPage.aspx.designer.cs">
       <DependentUpon>ServiceProviderPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TenantAdminPage.aspx.cs">
+      <DependentUpon>TenantAdminPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TenantAdminPage.aspx.designer.cs">
+      <DependentUpon>TenantAdminPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TenantUserPage.aspx.cs">
+      <DependentUpon>TenantUserPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TenantUserPage.aspx.designer.cs">
+      <DependentUpon>TenantUserPage.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
