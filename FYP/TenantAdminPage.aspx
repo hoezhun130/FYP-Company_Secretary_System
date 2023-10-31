@@ -9,6 +9,7 @@
 <body>
     <form id="form1" runat="server">
         <div>
+            This is Tenant Admin Page
         </div>
     </form>
 </body>
