@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 using Google.Authenticator;
 using System.Net.Mail;
 using System.Data.SqlClient;
+using static QRCoder.PayloadGenerator;
 
 namespace FYP
 {
@@ -126,11 +127,20 @@ namespace FYP
 
             if (isValid)
             {
-                Session["Email"] = txtEmail.Text;
+                string email = txtEmail.Text;
+                Session["Email"] = email;
                 Session["IsValidTwoFactorAuthentication"] = true;
-                // Redirect user to different pages based on their role
+
                 string userType = Session["UserType"].ToString();
                 Session["UserRole"] = userType;
+
+                string userName = GetUserName(email, userType);
+                Session["UserName"] = userName;
+
+                string userID = GetUserID(email, userType);
+                Session["UserID"] = userID;
+
+
                 switch (userType)
                 {
                     case "ServiceProvider":
@@ -159,6 +169,75 @@ namespace FYP
             }
         }
 
+        private string GetUserName(string email, string userRole)
+        {
+            string userName = string.Empty;
+            string connectionString = WebConfigurationManager.ConnectionStrings["RecordManagementConnectionString"].ConnectionString;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = $"SELECT Name FROM [{userRole}] WHERE Email = @Email";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Email", email);
+                    var result = command.ExecuteScalar();
+                    if (result != null)
+                    {
+                        userName = result.ToString();
+                    }
+                }
+            }
+
+            return userName;
+        }
+
+        private string GetUserID(string email, string userRole)
+        {
+            string userID = string.Empty;
+            string connectionString = WebConfigurationManager.ConnectionStrings["RecordManagementConnectionString"].ConnectionString;
+            string columnID = "";
+
+            // Determine the column name based on the user's role
+            switch (userRole)
+            {
+                case "ServiceProvider":
+                    columnID = "SP_ID";
+                    break;
+                case "TenantAdmin":
+                    columnID = "TA_ID";
+                    break;
+                case "TenantUser":
+                    columnID = "TU_ID";
+                    break;
+                case "ClientAdmin":
+                    columnID = "CA_ID";
+                    break;
+                case "ClientUser":
+                    columnID = "CU_ID";
+                    break;
+            }
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = $"SELECT {columnID} FROM [{userRole}] WHERE Email = @Email";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Email", email);
+                    var result = command.ExecuteScalar();
+                    if (result != null)
+                    {
+                        userID = result.ToString();
+                    }
+                }
+            }
+
+            return userID;
+        }
+
+
+
         private static byte[] ConvertSecretToBytes(string secret, bool secretIsBase32)
         {
             return secretIsBase32 ? Base32Encoding.ToBytes(secret) : System.Text.Encoding.UTF8.GetBytes(secret);
@@ -186,7 +265,7 @@ namespace FYP
             {
                 Session["Email"] = txtEmail.Text;
                 Session["IsValidTwoFactorAuthentication"] = true;
-                Response.Redirect("Index.aspx");
+                Response.Redirect("Login.aspx");
             }
             else
             {

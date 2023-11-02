@@ -76,6 +76,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AdminSite\CreateTenantAdmin.aspx" />
     <Content Include="App_Data\RecordManagement.mdf" />
     <Content Include="App_Data\RecordManagement_log.ldf">
       <DependentUpon>RecordManagement.mdf</DependentUpon>
@@ -91,6 +92,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminSite\CreateTenantAdmin.aspx.cs">
+      <DependentUpon>CreateTenantAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminSite\CreateTenantAdmin.aspx.designer.cs">
+      <DependentUpon>CreateTenantAdmin.aspx</DependentUpon>
+    </Compile>
     <Compile Include="UserSite\Category.aspx.cs">
       <DependentUpon>Category.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
