@@ -26,7 +26,8 @@
                 SelectCommand="SELECT TA.*, SP.Name AS SPName FROM [TenantAdmin] TA LEFT JOIN [ServiceProvider] SP ON TA.SP_ID = SP.SP_ID" 
                 DeleteCommand="DELETE FROM [TenantAdmin] WHERE [TA_ID] = @TA_ID" 
                 InsertCommand="INSERT INTO [TenantAdmin] ([Name], [Position], [Role], [ContactNumber], [Email], [Password], [SP_ID]) VALUES (@Name, @Position, @Role, @ContactNumber, @Email, @Password, @SP_ID)" 
-                UpdateCommand="UPDATE [TenantAdmin] SET [Name] = @Name, [Position] = @Position, [Role] = @Role, [ContactNumber] = @ContactNumber, [Email] = @Email, [Password] = @Password, [SP_ID] = @SP_ID WHERE [TA_ID] = @TA_ID">
+                UpdateCommand="UPDATE [TenantAdmin] SET [Name] = @Name, [Position] = @Position, [Role] = @Role, [ContactNumber] = @ContactNumber, [Email] = @Email, [Password] = @Password WHERE [TA_ID] = @TA_ID">
+
                 <DeleteParameters>
                     <asp:Parameter Name="TA_ID" Type="Int32" />
                 </DeleteParameters>
@@ -46,7 +47,6 @@
                     <asp:Parameter Name="ContactNumber" Type="String" />
                     <asp:Parameter Name="Email" Type="String" />
                     <asp:Parameter Name="Password" Type="String" />
-                    <asp:Parameter Name="SP_ID" Type="Int32" />
                     <asp:Parameter Name="TA_ID" Type="Int32" />
                 </UpdateParameters>
             </asp:SqlDataSource>
