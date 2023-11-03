@@ -13,5 +13,15 @@ namespace FYP
         {
 
         }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/AdminSite/CreateClientAdmin.aspx");
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/AdminSite/CreateClientUser.aspx");
+        }
     }
 }
