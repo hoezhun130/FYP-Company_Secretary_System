@@ -11,7 +11,7 @@
         <div>
             <asp:GridView ID="gvServiceProvider" runat="server" DataSourceID="SqlDataSource1" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="TA_ID">
                 <Columns>
-                    <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" ShowSelectButton="True" />
+                    <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
                     <asp:BoundField DataField="TA_ID" HeaderText="TA_ID" SortExpression="TA_ID" InsertVisible="False" ReadOnly="True" />
                     <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" />
                     <asp:BoundField DataField="Position" HeaderText="Position" SortExpression="Position" />

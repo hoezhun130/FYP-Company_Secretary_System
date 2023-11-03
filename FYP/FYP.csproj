@@ -76,7 +76,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AdminSite\CreateClientAdmin.aspx" />
+    <Content Include="AdminSite\CreateClientUser.aspx" />
     <Content Include="AdminSite\CreateTenantAdmin.aspx" />
+    <Content Include="AdminSite\CreateTenantUserPage.aspx" />
     <Content Include="App_Data\RecordManagement.mdf" />
     <Content Include="App_Data\RecordManagement_log.ldf">
       <DependentUpon>RecordManagement.mdf</DependentUpon>
@@ -92,12 +95,33 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminSite\CreateClientAdmin.aspx.cs">
+      <DependentUpon>CreateClientAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminSite\CreateClientAdmin.aspx.designer.cs">
+      <DependentUpon>CreateClientAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminSite\CreateClientUser.aspx.cs">
+      <DependentUpon>CreateClientUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminSite\CreateClientUser.aspx.designer.cs">
+      <DependentUpon>CreateClientUser.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AdminSite\CreateTenantAdmin.aspx.cs">
       <DependentUpon>CreateTenantAdmin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="AdminSite\CreateTenantAdmin.aspx.designer.cs">
       <DependentUpon>CreateTenantAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminSite\CreateTenantUserPage.aspx.cs">
+      <DependentUpon>CreateTenantUserPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminSite\CreateTenantUserPage.aspx.designer.cs">
+      <DependentUpon>CreateTenantUserPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="UserSite\Category.aspx.cs">
       <DependentUpon>Category.aspx</DependentUpon>
