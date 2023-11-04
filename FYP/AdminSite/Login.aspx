@@ -18,7 +18,7 @@
                 </asp:View>
                 <asp:View ID="twoFactorView" runat="server">
                     <asp:Image ID="barcodeImage" runat="server" Height="150px" Width="150px" />
-                    <asp:Label ID="setupCodeLabel" runat="server"></asp:Label><br />
+<%--                    <asp:Label ID="setupCodeLabel" runat="server"></asp:Label><br />--%>
                     <asp:TextBox ID="txtToken" runat="server" placeholder="Token"></asp:TextBox><br />
                     <asp:Button ID="btnAuthenticate" runat="server" Text="Authenticate" OnClick="btnAuthenticate_Click" />
                     <asp:Button ID="btnEmailOTP" runat="server" Text="Email OTP" OnClick="btnEmailOTP_Click" /><br />

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CreateClientUser.aspx.cs" Inherits="FYP.AdminSite.CreateClientUser" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CreateTenantUser.aspx.cs" Inherits="FYP.AdminSite.CreateTenantUserPage" %>
 
 <!DOCTYPE html>
 
@@ -7,9 +7,9 @@
     <title></title>
 </head>
 <body>
-    <form id="form1" runat="server">
+<form id="formCreateTenantUser" runat="server">
         <div>
-            <asp:Label ID="lblName" runat="server" Text="Client User's Name"></asp:Label>
+            <asp:Label ID="lblName" runat="server" Text="Name"></asp:Label>
             <asp:TextBox ID="txtName" runat="server"></asp:TextBox>
             <br />
 
@@ -17,12 +17,8 @@
             <asp:TextBox ID="txtPosition" runat="server"></asp:TextBox>
             <br />
 
-            <asp:Label ID="lblCompanyName" runat="server" Text="Company Name"></asp:Label>
-            <asp:TextBox ID="txtCompanyName" runat="server"></asp:TextBox>
-            <br />
-
-            <asp:Label ID="lblICNumber" runat="server" Text="IC Number"></asp:Label>
-            <asp:TextBox ID="txtICNumber" runat="server"></asp:TextBox>
+            <asp:Label ID="lblRole" runat="server" Text="Role"></asp:Label>
+            <asp:TextBox ID="txtRole" runat="server"></asp:TextBox>
             <br />
 
             <asp:Label ID="lblContactNumber" runat="server" Text="Contact Number"></asp:Label>
@@ -40,7 +36,6 @@
             <asp:Label ID="lblCreatedBy" runat="server" Text="Created By"></asp:Label>
             <asp:TextBox ID="txtCreatedBy" runat="server"></asp:TextBox>
             <br />
-
 
             <asp:Button ID="btnCreate" runat="server" Text="Create" OnClick="btnCreate_Click" />
         </div>

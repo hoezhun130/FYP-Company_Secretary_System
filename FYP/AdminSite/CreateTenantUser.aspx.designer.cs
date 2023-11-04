@@ -11,125 +11,89 @@ namespace FYP.AdminSite
 {
 
 
-    public partial class CreateClientAdmin
+    public partial class CreateTenantUserPage
     {
 
         /// <summary>
-        /// form1 control.
+        /// formCreateTenantUser control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.HtmlControls.HtmlForm formCreateTenantUser;
 
         /// <summary>
-        /// lblCompanyName control.
+        /// lblName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCompanyName;
+        protected global::System.Web.UI.WebControls.Label lblName;
 
         /// <summary>
-        /// txtCompanyName control.
+        /// txtName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCompanyName;
+        protected global::System.Web.UI.WebControls.TextBox txtName;
 
         /// <summary>
-        /// lblRegistrationNumber control.
+        /// lblPosition control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblRegistrationNumber;
+        protected global::System.Web.UI.WebControls.Label lblPosition;
 
         /// <summary>
-        /// txtRegistrationNumber control.
+        /// txtPosition control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtRegistrationNumber;
+        protected global::System.Web.UI.WebControls.TextBox txtPosition;
 
         /// <summary>
-        /// lblPhysicalAddress control.
+        /// lblRole control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPhysicalAddress;
+        protected global::System.Web.UI.WebControls.Label lblRole;
 
         /// <summary>
-        /// txtPhysicalAddress control.
+        /// txtRole control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPhysicalAddress;
+        protected global::System.Web.UI.WebControls.TextBox txtRole;
 
         /// <summary>
-        /// lblPICName control.
+        /// lblContactNumber control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPICName;
+        protected global::System.Web.UI.WebControls.Label lblContactNumber;
 
         /// <summary>
-        /// txtPICName control.
+        /// txtContactNumber control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPICName;
-
-        /// <summary>
-        /// lblPICContactNumber control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPICContactNumber;
-
-        /// <summary>
-        /// txtPICContactNumber control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPICContactNumber;
-
-        /// <summary>
-        /// lblTotalNumberOfBOD control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTotalNumberOfBOD;
-
-        /// <summary>
-        /// txtTotalNumberOfBOD control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTotalNumberOfBOD;
+        protected global::System.Web.UI.WebControls.TextBox txtContactNumber;
 
         /// <summary>
         /// lblEmail control.

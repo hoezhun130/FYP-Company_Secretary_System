@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FYP
+namespace FYP.UserSite
 {
 
 
-    public partial class Category
+    public partial class CompanyCategory
     {
 
         /// <summary>
@@ -24,39 +24,30 @@ namespace FYP
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// lblMessage control.
+        /// lblCompanyName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMessage;
+        protected global::System.Web.UI.WebControls.Label lblCompanyName;
 
         /// <summary>
-        /// txtCategoryName control.
+        /// ltCompanyName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCategoryName;
+        protected global::System.Web.UI.WebControls.Literal ltCompanyName;
 
         /// <summary>
-        /// btnAddCategory control.
+        /// rptCategories control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddCategory;
-
-        /// <summary>
-        /// gvCategory control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvCategory;
+        protected global::System.Web.UI.WebControls.Repeater rptCategories;
     }
 }
