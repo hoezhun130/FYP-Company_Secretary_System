@@ -32,7 +32,7 @@ namespace FYP
                         Response.Redirect("TenantAdminPage.aspx");
                         break;
                     case "TenantUser":
-                        Response.Redirect("TenantUserPage.aspx");
+                        Response.Redirect("../UserSite/CompanyCategory.aspx");
                         break;
                     case "ClientAdmin":
                         Response.Redirect("ClientAdminPage.aspx");
@@ -69,7 +69,7 @@ namespace FYP
 
                 statusLabel.Text = "Please authenticate using your Google Authenticator app";
                 barcodeImage.ImageUrl = setupInfo.QrCodeSetupImageUrl;
-                setupCodeLabel.Text = setupInfo.ManualEntryKey;
+                //setupCodeLabel.Text = setupInfo.ManualEntryKey;
                 txtToken.Visible = true;
                 btnAuthenticate.Visible = true;
 
@@ -150,7 +150,7 @@ namespace FYP
                         Response.Redirect("TenantAdminPage.aspx");
                         break;
                     case "TenantUser":
-                        Response.Redirect("TenantUserPage.aspx");
+                        Response.Redirect("../UserSite/CompanyCategory.aspx");
                         break;
                     case "ClientAdmin":
                         Response.Redirect("ClientAdminPage.aspx");

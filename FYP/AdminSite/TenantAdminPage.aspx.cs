@@ -21,7 +21,7 @@ namespace FYP
 
         protected void Button2_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/AdminSite/CreateClientUser.aspx");
+            Response.Redirect("~/AdminSite/CreateTenantUser.aspx");
         }
     }
 }

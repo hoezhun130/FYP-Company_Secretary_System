@@ -9,7 +9,9 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <asp:GridView ID="gvServiceProvider" runat="server" DataSourceID="SqlDataSource1" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="TA_ID">
+            <asp:Label ID="lblErrorMessage" runat="server" ForeColor="Red"></asp:Label>
+
+            <asp:GridView ID="gvServiceProvider" runat="server" DataSourceID="SqlDataSource1" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="TA_ID" OnRowDeleted="gvServiceProvider_RowDeleted">
                 <Columns>
                     <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
                     <asp:BoundField DataField="TA_ID" HeaderText="TA_ID" SortExpression="TA_ID" InsertVisible="False" ReadOnly="True" />
