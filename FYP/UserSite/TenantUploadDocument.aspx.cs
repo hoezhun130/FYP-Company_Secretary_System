@@ -15,12 +15,17 @@ namespace FYP.UserSite
         {
             if (!IsPostBack)
             {
-                // Check if the user is logged in and has a role
                 if (Session["UserRole"] != null)
                 {
                     if (Request.QueryString["CategoryID"] != null)
                     {
                         hiddenCategoryID.Value = Request.QueryString["CategoryID"];
+                    }
+                    // Check if CompanyName is provided in the query string and set it to a hidden field or a label
+                    if (!string.IsNullOrEmpty(Request.QueryString["CompanyName"]))
+                    {
+                        //hiddenCompanyName.Value = Request.QueryString["CompanyName"]; // Assuming you have a hidden field for CompanyName
+                        //lblCompanyName.Text = Request.QueryString["CompanyName"]; // Or set it to a label if you want to display it
                     }
                     InitializeForm();
                 }
@@ -107,7 +112,6 @@ namespace FYP.UserSite
                     {
                         if (reader.Read())
                         {
-                            // Assuming you have columns 'Name' and 'CompanyName' in your ClientUser table
                             txtUploadedBy.Text = reader["Name"].ToString();
                             ddlCompany.Items.Clear();
                             ddlCompany.Items.Add(new ListItem(reader["CompanyName"].ToString(), "CompanyID")); // You might want to replace "CompanyID" with an actual value if needed
