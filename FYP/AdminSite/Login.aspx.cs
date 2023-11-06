@@ -32,13 +32,13 @@ namespace FYP
                         Response.Redirect("TenantAdminPage.aspx");
                         break;
                     case "TenantUser":
-                        Response.Redirect("../UserSite/CompanyCategory.aspx");
+                        Response.Redirect("../UserSite/TenantCategorySelection.aspx");
                         break;
                     case "ClientAdmin":
                         Response.Redirect("ClientAdminPage.aspx");
                         break;
                     case "ClientUser":
-                        Response.Redirect("ClientUserPage.aspx");
+                        Response.Redirect("../UserSite/CategorySelection.aspx");
                         break;
                     default:
                         // Redirect to a default page or show an error message
@@ -52,12 +52,16 @@ namespace FYP
         protected void btnLogin_Click(object sender, EventArgs e)
         {
             string email = txtEmail.Text;
+            Session["Email"] = email;
+
             string password = txtPassword.Text;
 
             string userType = ValidateUser(email, password);
+            
 
             if (userType != null)
             {
+                Session["UserRole"] = userType;
                 string googleAuthKey = WebConfigurationManager.AppSettings["GoogleAuthKey"];
                 string userUniqueKey = (email + googleAuthKey);
 
@@ -150,13 +154,13 @@ namespace FYP
                         Response.Redirect("TenantAdminPage.aspx");
                         break;
                     case "TenantUser":
-                        Response.Redirect("../UserSite/CompanyCategory.aspx");
+                        Response.Redirect("../UserSite/TenantCategorySelection.aspx");
                         break;
                     case "ClientAdmin":
                         Response.Redirect("ClientAdminPage.aspx");
                         break;
                     case "ClientUser":
-                        Response.Redirect("ClientUserPage.aspx");
+                        Response.Redirect("../UserSite/CategorySelection.aspx");
                         break;
                     default:
                         statusLabel.Text = "Invalid user type";
@@ -265,6 +269,11 @@ namespace FYP
             {
                 Session["Email"] = txtEmail.Text;
                 Session["IsValidTwoFactorAuthentication"] = true;
+                // Ensure UserRole is assigned before using it in a redirect
+                if (Session["UserType"] != null && Session["UserRole"] == null)
+                {
+                    Session["UserRole"] = Session["UserType"].ToString();
+                }
                 Response.Redirect("Login.aspx");
             }
             else

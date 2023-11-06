@@ -84,14 +84,18 @@
     <Content Include="App_Data\RecordManagement_log.ldf">
       <DependentUpon>RecordManagement.mdf</DependentUpon>
     </Content>
-    <Content Include="UserSite\CategoryDetail.aspx" />
     <Content Include="AdminSite\ClientAdminPage.aspx" />
-    <Content Include="UserSite\ClientUserPage.aspx" />
     <Content Include="AdminSite\Login.aspx" />
     <Content Include="AdminSite\ServiceProviderPage.aspx" />
     <Content Include="AdminSite\TenantAdminPage.aspx" />
-    <Content Include="UserSite\CompanyCategory.aspx" />
-    <Content Include="UserSite\TenantUserPage.aspx" />
+    <Content Include="CategoryIcon\list.png" />
+    <Content Include="UserSite\CategorySelection.aspx" />
+    <Content Include="UserSite\TenantCategorySelection.aspx" />
+    <Content Include="UserSite\TenantCompanyList.aspx" />
+    <Content Include="UserSite\DocumentList.aspx" />
+    <Content Include="UserSite\TenantDocumentList.aspx" />
+    <Content Include="UserSite\TenantUploadDocument.aspx" />
+    <Content Include="UserSite\UploadDocument.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -123,26 +127,12 @@
     <Compile Include="AdminSite\CreateTenantUser.aspx.designer.cs">
       <DependentUpon>CreateTenantUser.aspx</DependentUpon>
     </Compile>
-    <Compile Include="UserSite\CategoryDetail.aspx.cs">
-      <DependentUpon>CategoryDetail.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UserSite\CategoryDetail.aspx.designer.cs">
-      <DependentUpon>CategoryDetail.aspx</DependentUpon>
-    </Compile>
     <Compile Include="AdminSite\ClientAdminPage.aspx.cs">
       <DependentUpon>ClientAdminPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="AdminSite\ClientAdminPage.aspx.designer.cs">
       <DependentUpon>ClientAdminPage.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UserSite\ClientUserPage.aspx.cs">
-      <DependentUpon>ClientUserPage.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UserSite\ClientUserPage.aspx.designer.cs">
-      <DependentUpon>ClientUserPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminSite\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -166,22 +156,58 @@
     <Compile Include="AdminSite\TenantAdminPage.aspx.designer.cs">
       <DependentUpon>TenantAdminPage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="UserSite\CompanyCategory.aspx.cs">
-      <DependentUpon>CompanyCategory.aspx</DependentUpon>
+    <Compile Include="UserSite\CategorySelection.aspx.cs">
+      <DependentUpon>CategorySelection.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="UserSite\CompanyCategory.aspx.designer.cs">
-      <DependentUpon>CompanyCategory.aspx</DependentUpon>
+    <Compile Include="UserSite\CategorySelection.aspx.designer.cs">
+      <DependentUpon>CategorySelection.aspx</DependentUpon>
     </Compile>
-    <Compile Include="UserSite\TenantUserPage.aspx.cs">
-      <DependentUpon>TenantUserPage.aspx</DependentUpon>
+    <Compile Include="UserSite\TenantCategorySelection.aspx.cs">
+      <DependentUpon>TenantCategorySelection.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="UserSite\TenantUserPage.aspx.designer.cs">
-      <DependentUpon>TenantUserPage.aspx</DependentUpon>
+    <Compile Include="UserSite\TenantCategorySelection.aspx.designer.cs">
+      <DependentUpon>TenantCategorySelection.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserSite\TenantCompanyList.aspx.cs">
+      <DependentUpon>TenantCompanyList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserSite\TenantCompanyList.aspx.designer.cs">
+      <DependentUpon>TenantCompanyList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserSite\DocumentList.aspx.cs">
+      <DependentUpon>DocumentList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserSite\DocumentList.aspx.designer.cs">
+      <DependentUpon>DocumentList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserSite\TenantDocumentList.aspx.cs">
+      <DependentUpon>TenantDocumentList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserSite\TenantDocumentList.aspx.designer.cs">
+      <DependentUpon>TenantDocumentList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserSite\TenantUploadDocument.aspx.cs">
+      <DependentUpon>TenantUploadDocument.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserSite\TenantUploadDocument.aspx.designer.cs">
+      <DependentUpon>TenantUploadDocument.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserSite\UploadDocument.aspx.cs">
+      <DependentUpon>UploadDocument.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserSite\UploadDocument.aspx.designer.cs">
+      <DependentUpon>UploadDocument.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Documents\Practical Exercise 5-202305-.pdf" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -190,6 +216,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
