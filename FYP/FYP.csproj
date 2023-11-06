@@ -80,6 +80,7 @@
     <Content Include="AdminSite\CreateClientUser.aspx" />
     <Content Include="AdminSite\CreateTenantAdmin.aspx" />
     <Content Include="AdminSite\CreateTenantUser.aspx" />
+    <Content Include="AdminSite\images\authenticator-icon.png" />
     <Content Include="App_Data\RecordManagement.mdf" />
     <Content Include="App_Data\RecordManagement_log.ldf">
       <DependentUpon>RecordManagement.mdf</DependentUpon>
@@ -91,6 +92,9 @@
     <Content Include="AdminSite\ServiceProviderPage.aspx" />
     <Content Include="AdminSite\TenantAdminPage.aspx" />
     <Content Include="UserSite\CompanyCategory.aspx" />
+    <Content Include="AdminSite\images\email-icon.png" />
+    <Content Include="AdminSite\images\password-icon.png" />
+    <Content Include="UserSite\PackagePage.aspx" />
     <Content Include="UserSite\TenantUserPage.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -173,6 +177,13 @@
     <Compile Include="UserSite\CompanyCategory.aspx.designer.cs">
       <DependentUpon>CompanyCategory.aspx</DependentUpon>
     </Compile>
+    <Compile Include="UserSite\PackagePage.aspx.cs">
+      <DependentUpon>PackagePage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserSite\PackagePage.aspx.designer.cs">
+      <DependentUpon>PackagePage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="UserSite\TenantUserPage.aspx.cs">
       <DependentUpon>TenantUserPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -190,6 +201,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
