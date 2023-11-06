@@ -66,5 +66,12 @@ namespace FYP.AdminSite
             // Redirect to another page or show success message.
             Response.Redirect("ServiceProviderPage.aspx");
         }
+
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ServiceProviderPage.aspx");
+        }
+
     }
 }
