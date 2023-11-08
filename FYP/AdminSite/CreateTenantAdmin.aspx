@@ -4,9 +4,9 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>Create Tenant Admin Page</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -16,9 +16,6 @@
             background-color: #ACC4B7; /* Set the background color to white */
         }
     </style>
-
-
-
 </head>
 <body>
 
@@ -37,15 +34,14 @@
     </div>
 
 
-
-
      <div class="container mt-3 card p-3 mb-4" style="max-width: 500px;">
     <form id="formCreateTenantAdmin" runat="server" class="container mt-3 needs-validation" style="border-radius: 10px;">
   
 
             <h3 class="text-left">
-                <i class="fas fa-user mr-2 mb-3"></i><b>Add User Account</b>
+                <i class="fas fa-user mr-2 mb-3"></i><b>Add Tenant User Account</b>
             </h3>
+
             <asp:Label ID="lblName" runat="server" Text="Name"></asp:Label>
             <asp:TextBox ID="txtName" runat="server" CssClass="form-control"></asp:TextBox>
             <br />

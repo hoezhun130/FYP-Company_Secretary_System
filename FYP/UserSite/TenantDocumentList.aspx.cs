@@ -18,7 +18,15 @@ namespace FYP.UserSite
             {
                 if (Session["UserID"] != null && Session["UserRole"] != null)
                 {
-                    BindDocuments();
+                    // Ensure that both CategoryID and CompanyName are present
+                    if (Request.QueryString["CategoryID"] != null && Request.QueryString["CompanyName"] != null)
+                    {
+                        BindDocuments();
+                    }
+                    else
+                    {
+                        // Redirect to an error page or show a message
+                    }
                 }
                 else
                 {
@@ -44,11 +52,10 @@ namespace FYP.UserSite
             using (SqlConnection con = new SqlConnection(connectionString))
             {
                 string query = @"
-                        SELECT d.DocumentID, d.DocumentName, d.DocumentPath 
-                        FROM Document d
-                        INNER JOIN ClientUser cu ON d.CU_ID = cu.CU_ID
-                        WHERE cu.CompanyName = @CompanyName
-                        AND d.CategoryID = @CategoryID";
+            SELECT DocumentID, DocumentName, DocumentPath 
+            FROM Document
+            WHERE Company = @CompanyName
+            AND CategoryID = @CategoryID";
                 SqlCommand cmd = new SqlCommand(query, con);
 
                 // Retrieve the Category ID and Company Name from the query string
@@ -62,24 +69,26 @@ namespace FYP.UserSite
         }
 
 
+
         protected void btnUploadDocument_Click(object sender, EventArgs e)
         {
             string categoryId = Request.QueryString["CategoryID"];
             string companyName = Request.QueryString["CompanyName"];
-            if (!string.IsNullOrEmpty(categoryId))
+            if (!string.IsNullOrEmpty(categoryId) && !string.IsNullOrEmpty(companyName))
             {
-                Response.Redirect($"TenantUploadDocument.aspx?CategoryID={categoryId}&CompanyName={companyName}");
+                // Ensure that the company name is URL encoded when redirecting
+                string encodedCompanyName = Server.UrlEncode(companyName);
+                Response.Redirect($"TenantUploadDocument.aspx?CategoryID={categoryId}&CompanyName={encodedCompanyName}");
             }
             else
             {
-                // Handle the error scenario where CategoryID is not found
+                // Handle the error scenario where CategoryID or CompanyName is not found
                 // Redirect back to the category selection or show an error message
             }
         }
 
         protected string GetDocumentUrl(string fileName)
         {
-            // Assuming the DocumentName does not contain any path, just the file name
             string path = Server.MapPath("~/Documents/") + fileName;
             if (File.Exists(path))
             {

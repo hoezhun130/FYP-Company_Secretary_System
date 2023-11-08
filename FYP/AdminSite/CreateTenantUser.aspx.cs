@@ -64,5 +64,10 @@ namespace FYP.AdminSite
             // Redirect to another page or show success message.
             Response.Redirect("TenantAdminPage.aspx");
         }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("TenantAdminPage.aspx");
+        }
     }
 }

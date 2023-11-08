@@ -66,9 +66,10 @@ namespace FYP.UserSite
         protected void btnUploadDocument_Click(object sender, EventArgs e)
         {
             string categoryId = Request.QueryString["CategoryID"];
+            string companyName = Request.QueryString["CompanyName"];
             if (!string.IsNullOrEmpty(categoryId))
             {
-                Response.Redirect($"UploadDocument.aspx?CategoryID={categoryId}");
+                Response.Redirect($"UploadDocument.aspx?CategoryID={categoryId}&CompanyName={companyName}");
             }
             else
             {

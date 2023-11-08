@@ -65,5 +65,9 @@ namespace FYP.AdminSite
             Response.Redirect("ClientAdminPage.aspx");
         }
 
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ClientAdminPage.aspx");
+        }
     }
 }

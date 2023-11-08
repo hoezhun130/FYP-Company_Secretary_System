@@ -11,7 +11,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <title></title>
+    <title>Login Page</title>
     <style>
         body {
             background-color: #ACC4B7; /* Set the background color to white */

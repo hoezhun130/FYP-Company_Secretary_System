@@ -21,12 +21,17 @@ namespace FYP.UserSite
                     {
                         hiddenCategoryID.Value = Request.QueryString["CategoryID"];
                     }
-                    // Check if CompanyName is provided in the query string and set it to a hidden field or a label
-                    if (!string.IsNullOrEmpty(Request.QueryString["CompanyName"]))
+
+                    // Get CompanyName from the query string and set it to the dropdown
+                    string companyName = Request.QueryString["CompanyName"];
+                    if (!string.IsNullOrEmpty(companyName))
                     {
-                        //hiddenCompanyName.Value = Request.QueryString["CompanyName"]; // Assuming you have a hidden field for CompanyName
-                        //lblCompanyName.Text = Request.QueryString["CompanyName"]; // Or set it to a label if you want to display it
+                        ddlCompany.Items.Clear();
+                        ddlCompany.Items.Add(new ListItem(companyName, companyName));
+                        ddlCompany.DataBind();
+                        ddlCompany.Enabled = false; // This ensures the dropdown is not editable
                     }
+
                     InitializeForm();
                 }
                 else
@@ -37,26 +42,32 @@ namespace FYP.UserSite
             }
         }
 
+
         private void InitializeForm()
         {
-            if (Session["Email"] != null)
+            if (Session["UserID"] != null)
             {
-                string email = Session["Email"].ToString();
-                FetchUserDetails(email);
-                BindPermissionsDropdowns(email);
+                int.TryParse(Session["UserID"].ToString(), out int userId);
+
+                // Fetch the user details to display the name
+                FetchUserDetails(userId);
+
+                // Bind the permissions dropdown, excluding the current user
+                if (Session["Email"] != null)
+                {
+                    BindPermissionsDropdowns(Session["Email"].ToString());
+                }
+
+                // Set the current date
+                txtDate.Text = DateTime.Now.ToShortDateString();
             }
             else
             {
-                // Redirect user to login page or show error because email session is not set.
+                // Redirect user to login page or show error because user ID session is not set.
+                Response.Redirect("../AdminSite/Login.aspx");
             }
-
-            // Set the current date
-            txtDate.Text = DateTime.Now.ToShortDateString();
-
-            // Populate other dropdowns as needed
-            // BindEditPermissionsDropdown();
-            // BindViewPermissionsDropdown();
         }
+
 
         private void BindPermissionsDropdowns(string currentUserEmail)
         {
@@ -76,7 +87,6 @@ namespace FYP.UserSite
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         ddlViewPermissions.Items.Clear();
-
                         ddlViewPermissions.Items.Add(new ListItem { Text = "Select a user", Value = "" });
 
                         while (reader.Read())
@@ -93,39 +103,39 @@ namespace FYP.UserSite
             }
         }
 
-        private void FetchUserDetails(string email)
+        private void FetchUserDetails(int userId)
         {
             string connectionString = WebConfigurationManager.ConnectionStrings["RecordManagementConnectionString"].ConnectionString;
             string query = @"
-                SELECT [Name], [CompanyName]
-                FROM [dbo].[ClientUser]
-                WHERE [Email] = @Email";
+        SELECT [Name]
+        FROM [dbo].[TenantUser]
+        WHERE [TU_ID] = @TU_ID";
 
             using (SqlConnection con = new SqlConnection(connectionString))
             {
                 using (SqlCommand cmd = new SqlCommand(query, con))
                 {
-                    cmd.Parameters.AddWithValue("@Email", email);
+                    cmd.Parameters.AddWithValue("@TU_ID", userId);
 
                     con.Open();
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         if (reader.Read())
                         {
+                            // Set the uploaded by text to the name of the current user
                             txtUploadedBy.Text = reader["Name"].ToString();
-                            ddlCompany.Items.Clear();
-                            ddlCompany.Items.Add(new ListItem(reader["CompanyName"].ToString(), "CompanyID")); // You might want to replace "CompanyID" with an actual value if needed
-                            ddlCompany.DataBind();
                         }
                         else
                         {
                             // Handle the case where user is not found
-                            // Redirect to login or show error message
+                            Response.Redirect("../AdminSite/Login.aspx");
                         }
                     }
                 }
             }
         }
+
+
 
         protected void btnSaveDocument_Click(object sender, EventArgs e)
         {
@@ -133,7 +143,8 @@ namespace FYP.UserSite
             {
                 try
                 {
-                    SaveUploadedDocument();
+                    string companyName = ddlCompany.SelectedItem.Text;
+                    SaveUploadedDocument(companyName);
                 }
                 catch (Exception ex)
                 {
@@ -148,22 +159,23 @@ namespace FYP.UserSite
             }
         }
 
-        private void SaveUploadedDocument()
+        private void SaveUploadedDocument(string companyName)
         {
             string fileName = FileUploadDocument.FileName;
             string filePath = Server.MapPath("~/Documents/") + fileName;
             int categoryID = int.Parse(hiddenCategoryID.Value);
             FileUploadDocument.SaveAs(filePath);
 
-            InsertDocumentIntoDatabase(fileName, filePath, DateTime.Now, categoryID);
+            InsertDocumentIntoDatabase(fileName, filePath, DateTime.Now, categoryID, companyName);
         }
 
-        private void InsertDocumentIntoDatabase(string fileName, string filePath, DateTime uploadDate, int categoryID)
+        private void InsertDocumentIntoDatabase(string fileName, string filePath, DateTime uploadDate, int categoryID, string company)
         {
             string connectionString = WebConfigurationManager.ConnectionStrings["RecordManagementConnectionString"].ConnectionString;
             string query = @"
-            INSERT INTO [dbo].[Document] (DocumentName, DocumentPath, Date, ViewPermission, TU_ID, CategoryID)
-            VALUES (@DocumentName, @DocumentPath, @Date, @ViewPermission, @TU_ID, @CategoryID)";
+            INSERT INTO [dbo].[Document] (DocumentName, DocumentPath, Date, ViewPermission, Company, TU_ID, CategoryID)
+            VALUES (@DocumentName, @DocumentPath, @Date, @ViewPermission, @Company, @TU_ID, @CategoryID)";
+
 
             using (SqlConnection con = new SqlConnection(connectionString))
             {
@@ -181,6 +193,7 @@ namespace FYP.UserSite
                     {
                         cmd.Parameters.AddWithValue("@ViewPermission", ddlViewPermissions.SelectedValue);
                     }
+                    cmd.Parameters.AddWithValue("@Company", company);
                     cmd.Parameters.AddWithValue("@TU_ID", Session["UserID"]); // Use the actual session variable that stores the user's ID
                     cmd.Parameters.AddWithValue("@CategoryID", hiddenCategoryID.Value); // Include the CategoryID from the hidden field
 
