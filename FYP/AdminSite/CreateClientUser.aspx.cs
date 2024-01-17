@@ -33,6 +33,7 @@ namespace FYP.AdminSite
             // Get user input from TextBox controls
             string name = txtName.Text;
             string position = txtPosition.Text;
+            string department = txtDepartment.Text;
             string companyName = txtCompanyName.Text;
             string icNumber = txtICNumber.Text; 
             string contactNumber = txtContactNumber.Text;
@@ -44,11 +45,12 @@ namespace FYP.AdminSite
             string connectionString = ConfigurationManager.ConnectionStrings["RecordManagementConnectionString"].ToString();
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string insertCommand = "INSERT INTO [ClientUser] (Name, Position, CompanyName, ICNumber, ContactNumber, Email, Password, CA_ID) VALUES (@Name, @Position, @CompanyName, @ICNumber, @ContactNumber, @Email, @Password, @CA_ID)";
+                string insertCommand = "INSERT INTO [ClientUser] (Name, Position, Department, CompanyName, ICNumber, ContactNumber, Email, Password, CA_ID) VALUES (@Name, @Position, @Department, @CompanyName, @ICNumber, @ContactNumber, @Email, @Password, @CA_ID)";
                 using (SqlCommand command = new SqlCommand(insertCommand, connection))
                 {
                     command.Parameters.AddWithValue("@Name", name);
                     command.Parameters.AddWithValue("@Position", position);
+                    command.Parameters.AddWithValue("@Department", department);
                     command.Parameters.AddWithValue("@CompanyName", companyName);
                     command.Parameters.AddWithValue("@ICNumber", icNumber);
                     command.Parameters.AddWithValue("@ContactNumber", contactNumber);
@@ -61,9 +63,64 @@ namespace FYP.AdminSite
                 }
             }
 
+            int clientUserId;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string selectCommand = "SELECT CU_ID FROM ClientUser WHERE Email = @Email";
+
+                using (SqlCommand command = new SqlCommand(selectCommand, connection))
+                {
+                    command.Parameters.AddWithValue("@Email", email);
+
+                    object result = command.ExecuteScalar();
+
+                    clientUserId = Convert.ToInt32(result);
+
+                }
+            }
+
+                    using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string insertSubscriptionCommand = "INSERT INTO [Subscription] (TierName, TierPrice, StartDate, EndDate, CU_ID) VALUES (@TierName, @TierPrice, @StartDate, @EndDate, @CU_ID)";
+                using (SqlCommand command = new SqlCommand(insertSubscriptionCommand, connection))
+                {
+                    // Set values for Subscription table
+                    command.Parameters.AddWithValue("@TierName", "Gold Package");
+                    command.Parameters.AddWithValue("@TierPrice", 0);
+                    command.Parameters.AddWithValue("@StartDate", DateTime.Now);
+                    command.Parameters.AddWithValue("@EndDate", DateTime.Now.AddYears(1));
+                    command.Parameters.AddWithValue("@CU_ID", clientUserId);
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+
+
+
             // Redirect to another page or show success message.
             Response.Redirect("ClientAdminPage.aspx");
         }
 
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ClientAdminPage.aspx");
+        }
+
+        protected void btnLogout_Click(object sender, EventArgs e)
+        {
+            // Clear user session
+            Session.Clear();
+            Session.Abandon();
+
+            // Clear authentication cookie
+            HttpCookie cookie = new HttpCookie("RememberMeCookie");
+            cookie.Expires = DateTime.Now.AddDays(-1);
+            Response.Cookies.Add(cookie);
+
+            // Redirect to the login page
+            Response.Redirect("~/AdminSite/Login.aspx");
+        }
     }
 }

@@ -12,40 +12,111 @@ using static QRCoder.PayloadGenerator;
 
 namespace FYP
 {
+    public class UserRoleMapping
+    {
+        public string Role { get; set; }
+        public string RedirectPage { get; set; }
+    }
     public partial class Login : System.Web.UI.Page
     {
+        private List<UserRoleMapping> roleMappings;
+
+        private void InitializeRoleMappings()
+        {
+            roleMappings = new List<UserRoleMapping>
+        {
+            new UserRoleMapping { Role = "ServiceProvider", RedirectPage = "ServiceProviderPage.aspx" },
+            new UserRoleMapping { Role = "TenantAdmin", RedirectPage = "TenantAdminPage.aspx" },
+            new UserRoleMapping { Role = "TenantUser", RedirectPage = "../UserSite/TenantCategorySelection.aspx" },
+            new UserRoleMapping { Role = "ClientAdmin", RedirectPage = "ClientAdminPage.aspx" },
+            new UserRoleMapping { Role = "ClientUser", RedirectPage = "../UserSite/CategorySelection.aspx" },
+            // Add more mappings as needed
+        };
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                if (roleMappings == null)
+                {
+                    InitializeRoleMappings();
+                }
+                // Check if the cookie exists
+                if (Request.Cookies["RememberMeCookie"] != null)
+                {
+                    // Retrieve the email and token from the cookie
+                    string email = Request.Cookies["RememberMeCookie"]["Email"];
+                    string token = Request.Cookies["RememberMeCookie"]["Token"];
+                    string userType = GetUserRole(email);
+
+                    string userName = GetUserName(email, userType);
+                    Session["UserName"] = userName;
+
+                    string userID = GetUserID(email, userType);
+                    Session["UserID"] = userID;
+
+                    // Validate the token against the stored values in your database
+                    if (ValidateSecureToken(email, token, userType))
+                    {
+                        // If the token is valid, automatically log in the user
+                        Session["Email"] = email;
+                        Session["IsValidTwoFactorAuthentication"] = true;
+
+                        string userRole = GetUserRole(email);
+
+                        if (!string.IsNullOrEmpty(userRole))
+                        {
+                            Session["UserRole"] = userRole;
+
+                            // Redirect the user to their respective page based on their role
+                            string redirectPage = GetRedirectPageForRole(userRole);
+
+                            if (!string.IsNullOrEmpty(redirectPage))
+                            {
+                                Response.Redirect(redirectPage);
+                            }
+                            else
+                            {
+                                // Redirect to a default page or show an error message
+                                Response.Redirect("DefaultPage.aspx");
+                            }
+                        }
+                    }
+                    else
+                    {
+                        // Invalid token, clear the cookie
+                        HttpCookie cookie = new HttpCookie("RememberMeCookie");
+                        cookie.Expires = DateTime.Now.AddDays(-1);
+                        Response.Cookies.Add(cookie);
+                    }
+                }
+            }
+
             // Set active view to loginView
             multiView.ActiveViewIndex = 0;
 
             if (Session["Email"] != null && Session["IsValidTwoFactorAuthentication"] != null && (bool)Session["IsValidTwoFactorAuthentication"])
             {
-                // Redirect user to their respective page based on their role
                 string userRole = Session["UserRole"].ToString();
-                switch (userRole)
+                string redirectPage = GetRedirectPageForRole(userRole);
+
+                if (!string.IsNullOrEmpty(redirectPage))
                 {
-                    case "ServiceProvider":
-                        Response.Redirect("ServiceProviderPage.aspx");
-                        break;
-                    case "TenantAdmin":
-                        Response.Redirect("TenantAdminPage.aspx");
-                        break;
-                    case "TenantUser":
-                        Response.Redirect("../UserSite/TenantCategorySelection.aspx");
-                        break;
-                    case "ClientAdmin":
-                        Response.Redirect("ClientAdminPage.aspx");
-                        break;
-                    case "ClientUser":
-                        Response.Redirect("../UserSite/CategorySelection.aspx");
-                        break;
-                    default:
-                        // Redirect to a default page or show an error message
-                        Response.Redirect("DefaultPage.aspx");
-                        break;
+                    Response.Redirect(redirectPage);
+                }
+                else
+                {
+                    // Redirect to a default page or show an error message
+                    Response.Redirect("DefaultPage.aspx");
                 }
             }
+        }
+
+        private string GetRedirectPageForRole(string userRole)
+        {
+            // Find the corresponding redirect page for the given user role
+            UserRoleMapping mapping = roleMappings.FirstOrDefault(m => m.Role == userRole);
+            return mapping?.RedirectPage;
         }
 
 
@@ -71,10 +142,23 @@ namespace FYP
                 Session["UserUniqueKey"] = userUniqueKey;
                 Session["UserType"] = userType;
 
+                if (chkRememberMe.Checked)
+                {
+                    string secureToken = Guid.NewGuid().ToString(); // Generate a secure token
+                    SaveSecureToken(email, secureToken, userType); // Store the secure token in the database
+                                                         // Set a persistent cookie with the secure token
+                    HttpCookie cookie = new HttpCookie("RememberMeCookie");
+                    cookie.Values["Email"] = txtEmail.Text;
+                    cookie.Values["Token"] = secureToken;
+                    cookie.Expires = DateTime.Now.AddDays(30); // Cookie expiration time
+                    Response.Cookies.Add(cookie);
+                }
+
                 statusLabel.Text = "Please authenticate using your Google Authenticator app";
                 barcodeImage.ImageUrl = setupInfo.QrCodeSetupImageUrl;
                 //setupCodeLabel.Text = setupInfo.ManualEntryKey;
                 txtToken.Visible = true;
+                txtToken.Text = string.Empty;
                 btnAuthenticate.Visible = true;
 
                 // Set active view to twoFactorView
@@ -82,6 +166,7 @@ namespace FYP
             }
             else
             {
+                txtToken.Text = string.Empty;
                 statusLabel.Text = "Invalid email or password";
             }
         }
@@ -267,6 +352,13 @@ namespace FYP
 
             if (DateTime.Now <= otpExpiration && userEnteredOTP == sessionOTP)
             {
+                string email = txtEmail.Text;
+                string userType = Session["UserType"].ToString();
+
+                // Retrieve UserID and set it in the session
+                string userID = GetUserID(email, userType);
+                Session["UserID"] = userID;
+
                 Session["Email"] = txtEmail.Text;
                 Session["IsValidTwoFactorAuthentication"] = true;
                 // Ensure UserRole is assigned before using it in a redirect
@@ -307,7 +399,7 @@ namespace FYP
             }
         }
 
-        private string GetUserRole(string email, string password)
+        private string GetUserRole(string email)
         {
             // Implement the logic to query the database and return the user's role based on their email and password
             string connectionString = WebConfigurationManager.ConnectionStrings["RecordManagementConnectionString"].ConnectionString;
@@ -321,11 +413,10 @@ namespace FYP
 
                 foreach (var userTable in userTables)
                 {
-                    string query = $"SELECT 'Found' FROM {userTable} WHERE Email = @Email AND Password = @Password";
+                    string query = $"SELECT 'Found' FROM {userTable} WHERE Email = @Email";
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@Email", email);
-                        command.Parameters.AddWithValue("@Password", password);
                         var result = command.ExecuteScalar();
 
                         if (result != null && result.ToString() == "Found")
@@ -340,7 +431,50 @@ namespace FYP
             return userRole;
         }
 
-        protected void btnCancel_Click(object sender, EventArgs e)
+        private void SaveSecureToken(string email, string token, string userType)
+        {
+            // Implement the logic to save the secure token in your database
+            string connectionString = WebConfigurationManager.ConnectionStrings["RecordManagementConnectionString"].ConnectionString;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string query = $"UPDATE {userType} SET SecureToken = @Token WHERE Email = @Email";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Token", token);
+                    command.Parameters.AddWithValue("@Email", email);
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        private bool ValidateSecureToken(string email, string token, string userType)
+        {
+            // Implement the logic to validate the secure token against the stored values in your database
+            string connectionString = WebConfigurationManager.ConnectionStrings["RecordManagementConnectionString"].ConnectionString;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string query = $"SELECT 1 FROM {userType} WHERE Email = @Email AND (SecureToken = @Token OR SecureToken IS NULL)";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Email", email);
+                    command.Parameters.AddWithValue("@Token", (object)token ?? DBNull.Value);
+
+                    var result = command.ExecuteScalar();
+
+                    return result != null; // Return true if the token is valid, false otherwise
+                }
+            }
+        }
+
+            protected void btnCancel_Click(object sender, EventArgs e)
         {
             Response.Redirect("Login.aspx");
         }

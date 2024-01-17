@@ -77,5 +77,10 @@ namespace FYP.UserSite
             }
         }
 
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/UserSite/TenantCategorySelection.aspx");
+        }
+
     }
 }
