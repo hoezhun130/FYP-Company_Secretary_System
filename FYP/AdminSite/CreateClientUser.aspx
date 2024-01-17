@@ -33,9 +33,9 @@
         </div>
     </div>
 
-     <div class="container mt-3 card p-3 mb-4" style="max-width: 500px;">
-    <form id="form1" runat="server" class="container mt-3 needs-validation" style="border-radius: 10px;">
-        
+    <div class="container mt-3 card p-3 mb-4" style="max-width: 500px;">
+        <form id="form1" runat="server" class="container mt-3 needs-validation" style="border-radius: 10px;">
+
             <h3 class="text-left">
                 <i class="fas fa-user mr-2 mb-3"></i><b>Add Client User Account</b>
             </h3>
@@ -46,6 +46,10 @@
 
             <asp:Label ID="lblPosition" runat="server" Text="Position"></asp:Label>
             <asp:TextBox ID="txtPosition" runat="server" CssClass="form-control"></asp:TextBox>
+            <br />
+
+            <asp:Label ID="lblDepartment" runat="server" Text="Department"></asp:Label>
+            <asp:TextBox ID="txtDepartment" runat="server" CssClass="form-control"></asp:TextBox>
             <br />
 
             <asp:Label ID="lblCompanyName" runat="server" Text="Company Name"></asp:Label>
@@ -63,9 +67,9 @@
             <asp:Label ID="lblEmail" runat="server" Text="Email"></asp:Label>
             <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control"></asp:TextBox>
             <br />
-            
+
             <asp:Label ID="lblPassword" runat="server" Text="Password"></asp:Label>
-            <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control"></asp:TextBox>
+            <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" TextMode="Password"></asp:TextBox>
             <br />
 
             <asp:Label ID="lblCreatedBy" runat="server" Text="Created By"></asp:Label>
@@ -73,11 +77,11 @@
             <br />
 
 
-            <asp:Button ID="btnCreate" runat="server" Text="Create" OnClick="btnCreate_Click"  CssClass="btn btn-primary"/>
-            <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" CssClass="btn btn-secondary"/>
+            <asp:Button ID="btnCreate" runat="server" Text="Create" OnClick="btnCreate_Click" CssClass="btn btn-primary" />
+            <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" CssClass="btn btn-secondary" />
 
-       
-    </form>
- </div>
+
+        </form>
+    </div>
 </body>
 </html>

@@ -60,22 +60,22 @@ namespace FYP.AdminSite
         protected global::System.Web.UI.WebControls.TextBox txtPosition;
 
         /// <summary>
-        /// lblRole control.
+        /// lblDepartment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblRole;
+        protected global::System.Web.UI.WebControls.Label lblDepartment;
 
         /// <summary>
-        /// txtRole control.
+        /// txtDepartment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtRole;
+        protected global::System.Web.UI.WebControls.TextBox txtDepartment;
 
         /// <summary>
         /// lblContactNumber control.

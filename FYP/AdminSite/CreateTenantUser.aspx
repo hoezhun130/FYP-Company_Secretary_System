@@ -40,7 +40,7 @@
 
 
           <h3 class="text-left">
-              <i class="fas fa-user mr-2 mb-3"></i><b>Add Client Admin Account</b>
+              <i class="fas fa-user mr-2 mb-3"></i><b>Add Tenant User Account</b>
           </h3>
 
           <asp:Label ID="lblName" runat="server" Text="Name"></asp:Label>
@@ -51,8 +51,8 @@
           <asp:TextBox ID="txtPosition" runat="server" CssClass="form-control"></asp:TextBox>
           <br />
 
-          <asp:Label ID="lblRole" runat="server" Text="Role"></asp:Label>
-          <asp:TextBox ID="txtRole" runat="server" CssClass="form-control"></asp:TextBox>
+          <asp:Label ID="lblDepartment" runat="server" Text="Department"></asp:Label>
+          <asp:TextBox ID="txtDepartment" runat="server" CssClass="form-control"></asp:TextBox>
           <br />
 
           <asp:Label ID="lblContactNumber" runat="server" Text="Contact Number"></asp:Label>
@@ -64,7 +64,7 @@
           <br />
 
           <asp:Label ID="lblPassword" runat="server" Text="Password"></asp:Label>
-          <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control"></asp:TextBox>
+          <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" TextMode="Password"></asp:TextBox>
           <br />
 
           <asp:Label ID="lblCreatedBy" runat="server" Text="Created By"></asp:Label>

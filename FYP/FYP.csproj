@@ -80,22 +80,45 @@
     <Content Include="AdminSite\CreateClientUser.aspx" />
     <Content Include="AdminSite\CreateTenantAdmin.aspx" />
     <Content Include="AdminSite\CreateTenantUser.aspx" />
+    <Content Include="AdminSite\ClientAdminPage.aspx" />
+    <Content Include="AdminSite\Login.aspx" />
+    <Content Include="AdminSite\ManageTenantUser.aspx" />
+    <Content Include="AdminSite\ServiceProviderPage.aspx" />
+    <Content Include="AdminSite\ManageClientAdmin.aspx" />
+    <Content Include="AdminSite\TenantAdminPage.aspx" />
     <Content Include="App_Data\RecordManagement.mdf" />
     <Content Include="App_Data\RecordManagement_log.ldf">
       <DependentUpon>RecordManagement.mdf</DependentUpon>
     </Content>
-    <Content Include="AdminSite\ClientAdminPage.aspx" />
-    <Content Include="AdminSite\Login.aspx" />
-    <Content Include="AdminSite\ServiceProviderPage.aspx" />
-    <Content Include="AdminSite\TenantAdminPage.aspx" />
+    <Content Include="CategoryIcon\icon1.png" />
+    <Content Include="CategoryIcon\icon2.png" />
+    <Content Include="CategoryIcon\icon3.png" />
     <Content Include="CategoryIcon\list.png" />
+    <Content Include="CategoryIcon\registration.png" />
+    <Content Include="Global.asax" />
     <Content Include="UserSite\CategorySelection.aspx" />
+    <Content Include="UserSite\ClientPackage.aspx" />
+    <Content Include="UserSite\CreateCategory.aspx" />
+    <Content Include="UserSite\DiamondPackage.aspx" />
+    <Content Include="UserSite\Package.aspx" />
+    <Content Include="UserSite\PlatinumPackage.aspx" />
+    <Content Include="UserSite\SetCategoryPermission.aspx" />
+    <Content Include="UserSite\SubscriptionConfirmation.aspx" />
     <Content Include="UserSite\TenantCategorySelection.aspx" />
     <Content Include="UserSite\TenantCompanyList.aspx" />
     <Content Include="UserSite\DocumentList.aspx" />
+    <Content Include="UserSite\TenantCreateCategory.aspx" />
     <Content Include="UserSite\TenantDocumentList.aspx" />
+    <Content Include="UserSite\TenantSetCategoryPermission.aspx" />
+    <Content Include="UserSite\TenantUpdateDocument.aspx" />
     <Content Include="UserSite\TenantUploadDocument.aspx" />
+    <Content Include="UserSite\TenantUserProfile.aspx" />
+    <Content Include="UserSite\TenantVersionControl.aspx" />
+    <Content Include="UserSite\UpdateDocument.aspx" />
+    <Content Include="UserSite\UpgradeSuccess.aspx" />
     <Content Include="UserSite\UploadDocument.aspx" />
+    <Content Include="UserSite\UserProfile.aspx" />
+    <Content Include="UserSite\VersionControl.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -136,10 +159,26 @@
     </Compile>
     <Compile Include="AdminSite\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="AdminSite\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminSite\ManageTenantUser.aspx.cs">
+      <DependentUpon>ManageTenantUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminSite\ManageTenantUser.aspx.designer.cs">
+      <DependentUpon>ManageTenantUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminSite\TenantAdminPage.aspx.cs">
+      <DependentUpon>TenantAdminPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminSite\TenantAdminPage.aspx.designer.cs">
+      <DependentUpon>TenantAdminPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AdminSite\ServiceProviderPage.aspx.cs">
@@ -149,12 +188,12 @@
     <Compile Include="AdminSite\ServiceProviderPage.aspx.designer.cs">
       <DependentUpon>ServiceProviderPage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AdminSite\TenantAdminPage.aspx.cs">
-      <DependentUpon>TenantAdminPage.aspx</DependentUpon>
+    <Compile Include="AdminSite\ManageClientAdmin.aspx.cs">
+      <DependentUpon>ManageClientAdmin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AdminSite\TenantAdminPage.aspx.designer.cs">
-      <DependentUpon>TenantAdminPage.aspx</DependentUpon>
+    <Compile Include="AdminSite\ManageClientAdmin.aspx.designer.cs">
+      <DependentUpon>ManageClientAdmin.aspx</DependentUpon>
     </Compile>
     <Compile Include="UserSite\CategorySelection.aspx.cs">
       <DependentUpon>CategorySelection.aspx</DependentUpon>
@@ -162,6 +201,62 @@
     </Compile>
     <Compile Include="UserSite\CategorySelection.aspx.designer.cs">
       <DependentUpon>CategorySelection.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserSite\ClientPackage.aspx.cs">
+      <DependentUpon>ClientPackage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserSite\ClientPackage.aspx.designer.cs">
+      <DependentUpon>ClientPackage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserSite\CreateCategory.aspx.cs">
+      <DependentUpon>CreateCategory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserSite\CreateCategory.aspx.designer.cs">
+      <DependentUpon>CreateCategory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserSite\DiamondPackage.aspx.cs">
+      <DependentUpon>DiamondPackage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserSite\DiamondPackage.aspx.designer.cs">
+      <DependentUpon>DiamondPackage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserSite\Header.Master.cs">
+      <DependentUpon>Header.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserSite\Header.Master.designer.cs">
+      <DependentUpon>Header.Master</DependentUpon>
+    </Compile>
+    <Compile Include="UserSite\Package.aspx.cs">
+      <DependentUpon>Package.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserSite\Package.aspx.designer.cs">
+      <DependentUpon>Package.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserSite\PlatinumPackage.aspx.cs">
+      <DependentUpon>PlatinumPackage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserSite\PlatinumPackage.aspx.designer.cs">
+      <DependentUpon>PlatinumPackage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserSite\SetCategoryPermission.aspx.cs">
+      <DependentUpon>SetCategoryPermission.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserSite\SetCategoryPermission.aspx.designer.cs">
+      <DependentUpon>SetCategoryPermission.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserSite\SubscriptionConfirmation.aspx.cs">
+      <DependentUpon>SubscriptionConfirmation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserSite\SubscriptionConfirmation.aspx.designer.cs">
+      <DependentUpon>SubscriptionConfirmation.aspx</DependentUpon>
     </Compile>
     <Compile Include="UserSite\TenantCategorySelection.aspx.cs">
       <DependentUpon>TenantCategorySelection.aspx</DependentUpon>
@@ -184,12 +279,40 @@
     <Compile Include="UserSite\DocumentList.aspx.designer.cs">
       <DependentUpon>DocumentList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="UserSite\TenantCreateCategory.aspx.cs">
+      <DependentUpon>TenantCreateCategory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserSite\TenantCreateCategory.aspx.designer.cs">
+      <DependentUpon>TenantCreateCategory.aspx</DependentUpon>
+    </Compile>
     <Compile Include="UserSite\TenantDocumentList.aspx.cs">
       <DependentUpon>TenantDocumentList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="UserSite\TenantDocumentList.aspx.designer.cs">
       <DependentUpon>TenantDocumentList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserSite\TenantHeader.Master.cs">
+      <DependentUpon>TenantHeader.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserSite\TenantHeader.Master.designer.cs">
+      <DependentUpon>TenantHeader.Master</DependentUpon>
+    </Compile>
+    <Compile Include="UserSite\TenantSetCategoryPermission.aspx.cs">
+      <DependentUpon>TenantSetCategoryPermission.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserSite\TenantSetCategoryPermission.aspx.designer.cs">
+      <DependentUpon>TenantSetCategoryPermission.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserSite\TenantUpdateDocument.aspx.cs">
+      <DependentUpon>TenantUpdateDocument.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserSite\TenantUpdateDocument.aspx.designer.cs">
+      <DependentUpon>TenantUpdateDocument.aspx</DependentUpon>
     </Compile>
     <Compile Include="UserSite\TenantUploadDocument.aspx.cs">
       <DependentUpon>TenantUploadDocument.aspx</DependentUpon>
@@ -198,6 +321,34 @@
     <Compile Include="UserSite\TenantUploadDocument.aspx.designer.cs">
       <DependentUpon>TenantUploadDocument.aspx</DependentUpon>
     </Compile>
+    <Compile Include="UserSite\TenantUserProfile.aspx.cs">
+      <DependentUpon>TenantUserProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserSite\TenantUserProfile.aspx.designer.cs">
+      <DependentUpon>TenantUserProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserSite\TenantVersionControl.aspx.cs">
+      <DependentUpon>TenantVersionControl.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserSite\TenantVersionControl.aspx.designer.cs">
+      <DependentUpon>TenantVersionControl.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserSite\UpdateDocument.aspx.cs">
+      <DependentUpon>UpdateDocument.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserSite\UpdateDocument.aspx.designer.cs">
+      <DependentUpon>UpdateDocument.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserSite\UpgradeSuccess.aspx.cs">
+      <DependentUpon>UpgradeSuccess.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserSite\UpgradeSuccess.aspx.designer.cs">
+      <DependentUpon>UpgradeSuccess.aspx</DependentUpon>
+    </Compile>
     <Compile Include="UserSite\UploadDocument.aspx.cs">
       <DependentUpon>UploadDocument.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -205,10 +356,26 @@
     <Compile Include="UserSite\UploadDocument.aspx.designer.cs">
       <DependentUpon>UploadDocument.aspx</DependentUpon>
     </Compile>
+    <Compile Include="UserSite\UserProfile.aspx.cs">
+      <DependentUpon>UserProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserSite\UserProfile.aspx.designer.cs">
+      <DependentUpon>UserProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserSite\VersionControl.aspx.cs">
+      <DependentUpon>VersionControl.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserSite\VersionControl.aspx.designer.cs">
+      <DependentUpon>VersionControl.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Documents\Practical Exercise 5-202305-.pdf" />
     <None Include="packages.config" />
+    <Content Include="UserSite\TenantHeader.Master" />
+    <Content Include="UserSite\Header.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

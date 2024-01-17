@@ -72,8 +72,8 @@
             <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control"></asp:TextBox>
             <br />
             
-            <asp:Label ID="lblPassword" runat="server" Text="Password"></asp:Label>
-            <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control"></asp:TextBox>
+            <asp:Label ID="lblPassword" runat="server" Text="Password" ></asp:Label>
+            <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" TextMode="Password"></asp:TextBox>
             <br />
 
             <asp:Label ID="lblCreatedBy" runat="server" Text="Created By"></asp:Label>

@@ -52,12 +52,6 @@ namespace FYP.UserSite
                 // Fetch the user details to display the name
                 FetchUserDetails(userId);
 
-                // Bind the permissions dropdown, excluding the current user
-                if (Session["Email"] != null)
-                {
-                    BindPermissionsDropdowns(Session["Email"].ToString());
-                }
-
                 // Set the current date
                 txtDate.Text = DateTime.Now.ToShortDateString();
             }
@@ -68,40 +62,6 @@ namespace FYP.UserSite
             }
         }
 
-
-        private void BindPermissionsDropdowns(string currentUserEmail)
-        {
-            string connectionString = WebConfigurationManager.ConnectionStrings["RecordManagementConnectionString"].ConnectionString;
-            string query = @"
-        SELECT [TU_ID], [Name]
-        FROM [dbo].[TenantUser]
-        WHERE [Email] != @Email";
-
-            using (SqlConnection con = new SqlConnection(connectionString))
-            {
-                using (SqlCommand cmd = new SqlCommand(query, con))
-                {
-                    cmd.Parameters.AddWithValue("@Email", currentUserEmail);
-
-                    con.Open();
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        ddlViewPermissions.Items.Clear();
-                        ddlViewPermissions.Items.Add(new ListItem { Text = "Select a user", Value = "" });
-
-                        while (reader.Read())
-                        {
-                            string name = reader["Name"].ToString();
-                            string tu_id = reader["TU_ID"].ToString();
-
-                            ddlViewPermissions.Items.Add(new ListItem { Text = name, Value = tu_id });
-                        }
-
-                        ddlViewPermissions.DataBind();
-                    }
-                }
-            }
-        }
 
         private void FetchUserDetails(int userId)
         {
@@ -145,17 +105,16 @@ namespace FYP.UserSite
                 {
                     string companyName = ddlCompany.SelectedItem.Text;
                     SaveUploadedDocument(companyName);
+                    ShowNotificationModal("Document uploaded successfully!", "TenantDocumentList.aspx");
                 }
                 catch (Exception ex)
                 {
-                    // Handle exceptions
-                    lblErrorMessage.Text = ex.Message;
+                    ShowNotificationModal("Error uploading document. ");
                 }
             }
             else
             {
-                // Handle the case where no file was uploaded
-                // Display an error message
+                ShowNotificationModal("Please select a document to upload.");
             }
         }
 
@@ -173,8 +132,8 @@ namespace FYP.UserSite
         {
             string connectionString = WebConfigurationManager.ConnectionStrings["RecordManagementConnectionString"].ConnectionString;
             string query = @"
-            INSERT INTO [dbo].[Document] (DocumentName, DocumentPath, Date, ViewPermission, Company, TU_ID, CategoryID)
-            VALUES (@DocumentName, @DocumentPath, @Date, @ViewPermission, @Company, @TU_ID, @CategoryID)";
+            INSERT INTO [dbo].[Document] (DocumentName, DocumentPath, Date, Company, TU_ID, CategoryID)
+            VALUES (@DocumentName, @DocumentPath, @Date, @Company, @TU_ID, @CategoryID)";
 
 
             using (SqlConnection con = new SqlConnection(connectionString))
@@ -184,15 +143,6 @@ namespace FYP.UserSite
                     cmd.Parameters.AddWithValue("@DocumentName", fileName);
                     cmd.Parameters.AddWithValue("@DocumentPath", filePath);
                     cmd.Parameters.AddWithValue("@Date", uploadDate);
-                    // Check if the selected value is not empty
-                    if (string.IsNullOrEmpty(ddlViewPermissions.SelectedValue))
-                    {
-                        cmd.Parameters.AddWithValue("@ViewPermission", DBNull.Value);
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("@ViewPermission", ddlViewPermissions.SelectedValue);
-                    }
                     cmd.Parameters.AddWithValue("@Company", company);
                     cmd.Parameters.AddWithValue("@TU_ID", Session["UserID"]); // Use the actual session variable that stores the user's ID
                     cmd.Parameters.AddWithValue("@CategoryID", hiddenCategoryID.Value); // Include the CategoryID from the hidden field
@@ -202,5 +152,50 @@ namespace FYP.UserSite
                 }
             }
         }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            string categoryId = Request.QueryString["CategoryID"];
+            string companyName = Request.QueryString["CompanyName"];
+
+            if (!string.IsNullOrEmpty(categoryId) && !string.IsNullOrEmpty(companyName))
+            {
+                string encodedCompanyName = Server.UrlEncode(companyName);
+                Response.Redirect($"TenantDocumentList.aspx?CategoryID={categoryId}&CompanyName={encodedCompanyName}");
+            }
+            else
+            {
+                // Redirect to a default page or handle the error if CategoryID or CompanyId is missing
+                Response.Redirect("TenantDocumentList.aspx"); // Or another default page
+            }
+        }
+
+        private void ShowNotificationModal(string message, string redirectPage = null)
+        {
+            string queryString = Request.QueryString.ToString();
+            string redirectUrl = !string.IsNullOrEmpty(redirectPage) ? $"{redirectPage}?{queryString}" : null;
+
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "showNotification", $"showNotification('{message}', '{redirectUrl}');", true);
+        }
+
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            string categoryId = Request.QueryString["CategoryID"];
+            string companyName = Request.QueryString["CompanyName"];
+
+            if (!string.IsNullOrEmpty(categoryId) && !string.IsNullOrEmpty(companyName))
+            {
+                string encodedCompanyName = Server.UrlEncode(companyName);
+                Response.Redirect($"TenantDocumentList.aspx?CategoryID={categoryId}&CompanyName={encodedCompanyName}");
+            }
+            else
+            {
+                // Redirect to a default page or handle the error if CategoryID or CompanyId is missing
+                Response.Redirect("TenantDocumentList.aspx"); // Or another default page
+            }
+        }
+
+
     }
 }

@@ -5,23 +5,34 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace FYP
+namespace FYP.AdminSite
 {
     public partial class TenantAdminPage : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                if (Session["UserID"] == null)
+                {
+                    Response.Redirect("Login.aspx");
+                }
+            }
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
+        protected void btnLogout_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/AdminSite/CreateClientAdmin.aspx");
-        }
+            // Clear user session
+            Session.Clear();
+            Session.Abandon();
 
-        protected void Button2_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/AdminSite/CreateTenantUser.aspx");
+            // Clear authentication cookie
+            HttpCookie cookie = new HttpCookie("RememberMeCookie");
+            cookie.Expires = DateTime.Now.AddDays(-1);
+            Response.Cookies.Add(cookie);
+
+            // Redirect to the login page
+            Response.Redirect("../AdminSite/Login.aspx");
         }
     }
 }

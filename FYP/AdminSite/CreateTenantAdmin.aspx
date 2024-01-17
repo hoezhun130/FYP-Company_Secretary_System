@@ -39,7 +39,7 @@
   
 
             <h3 class="text-left">
-                <i class="fas fa-user mr-2 mb-3"></i><b>Add Tenant User Account</b>
+                <i class="fas fa-user mr-2 mb-3"></i><b>Add Tenant Admin Account</b>
             </h3>
 
             <asp:Label ID="lblName" runat="server" Text="Name"></asp:Label>
