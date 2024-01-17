@@ -372,7 +372,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Documents\Practical Exercise 5-202305-.pdf" />
     <None Include="packages.config" />
     <Content Include="UserSite\TenantHeader.Master" />
     <Content Include="UserSite\Header.Master" />
@@ -385,6 +384,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AdminSite\images\" />
+    <Folder Include="Documents\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
